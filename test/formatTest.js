@@ -7,7 +7,7 @@ describe("justifier", function() {
     let lineCount = 1;
     let wordCount = 2;
     let characterCount = 3;
-    let option = "";
+    let option = [""];
     const actual = justifier(
       {
         fileName,
@@ -26,7 +26,7 @@ describe("justifier", function() {
     let lineCount = 1;
     let wordCount = 2;
     let characterCount = 3;
-    let option = "-l";
+    let option = ["-l"];
     const actual = justifier(
       {
         fileName,
@@ -45,7 +45,7 @@ describe("justifier", function() {
     let lineCount = 1;
     let wordCount = 2;
     let characterCount = 3;
-    let option = "-w";
+    let option = ["-w"];
     const actual = justifier(
       {
         fileName,
@@ -64,7 +64,7 @@ describe("justifier", function() {
     let lineCount = 1;
     let wordCount = 2;
     let characterCount = 3;
-    let option = "-c";
+    let option = ["-c"];
     const actual = justifier(
       {
         fileName,
@@ -124,7 +124,7 @@ describe("format", function() {
         characterCount: 1
       }
     ];
-    let option = "";
+    let option = [""];
     let actual = format(fileLog, option);
     let expected = "       1       2       1 file1";
     assert.deepEqual(actual, expected);
@@ -145,7 +145,7 @@ describe("format", function() {
         characterCount: 4
       }
     ];
-    let option = "";
+    let option = [""];
     let actual = format(fileLog, option);
     let expected = "       1       2       1 file1\n";
     expected += "       2       2       4 file2\n";

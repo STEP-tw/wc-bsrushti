@@ -1,14 +1,14 @@
 const justifier = function({ fileName, lineCount, wordCount, characterCount }, option) {
   let result = "";
   let spaces = repeat.bind(null, " ");
-
-  if(option == '-l') {
+  option = option.join("");
+  if(option.includes('l')) {
     result += spaces(spaceCount(lineCount.toString())) + lineCount;
   };
-  if(option == '-w') {
+  if(option.includes('w')) {
     result += spaces(spaceCount(wordCount.toString())) + wordCount;
   };
-  if(option == '-c') {
+  if(option.includes('c')) {
     result += spaces(spaceCount(characterCount.toString())) + characterCount;
   };
 
