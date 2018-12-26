@@ -68,63 +68,62 @@ describe("getWordCount", function() {
   });
 });
 
-describe('readFile', function() {
+describe("readFile", function() {
   const files = {
-    oneLine : 'abc',
-    fiveLines : 'abc\nefg\nhij\nklm\nnop'
+    oneLine: "abc",
+    fiveLines: "abc\nefg\nhij\nklm\nnop"
   };
 
   const fs = {
-    reader : function(fileName) {
-        return files[fileName];
+    reader: function(fileName) {
+      return files[fileName];
     }
-  }
+  };
 
-  it('should return content for one liner file', function() {
-    const fileName = 'oneLine';
+  it("should return content for one liner file", function() {
+    const fileName = "oneLine";
     const actual = readFile(fs.reader, fileName);
-    const expected = 'abc';
+    const expected = "abc";
     assert.deepEqual(actual, expected);
   });
 
-  it('should return content for five liner file', function() {
-    const fileName = 'fiveLines';
+  it("should return content for five liner file", function() {
+    const fileName = "fiveLines";
     const actual = readFile(fs.reader, fileName);
-    const expected = 'abc\nefg\nhij\nklm\nnop';
+    const expected = "abc\nefg\nhij\nklm\nnop";
     assert.deepEqual(actual, expected);
   });
-
 });
 
-describe('runCommand', function() {
+describe("runCommand", function() {
   const files = {
-    oneLine : 'abc\npqr\n',
-    fiveLines : 'abc\nefg\nhij\nklm\nnop\n'
+    oneLine: "abc\npqr\n",
+    fiveLines: "abc\nefg\nhij\nklm\nnop\n"
   };
 
   const fs = {
-    readFileSync : function(fileName) {
-        return files[fileName];
+    readFileSync: function(fileName) {
+      return files[fileName];
     }
-  }
+  };
 
-  it('should return formatted output for single file', function() {
-    const params = ['oneLine'];
+  it("should return formatted output for single file", function() {
+    const params = ["oneLine"];
     const actual = runCommand(fs, params);
-    const expected = '       1       2       7 oneLine';
+    const expected = "       1       2       7 oneLine";
     assert.deepEqual(actual, expected);
   });
 });
 
-describe('encaseArgs', function() {
-  it('should return given params in object', function() {
-    const actual = encaseArgs('file1', 1, 1, 2);
+describe("encaseArgs", function() {
+  it("should return given params in object", function() {
+    const actual = encaseArgs("file1", 1, 1, 2);
     const expected = {
-      fileName : 'file1',
-      lineCount : 1,
-      wordCount : 1,
-      characterCount : 2
-    }; 
-    assert.deepEqual(actual,expected);
+      fileName: "file1",
+      lineCount: 1,
+      wordCount: 1,
+      characterCount: 2
+    };
+    assert.deepEqual(actual, expected);
   });
 });

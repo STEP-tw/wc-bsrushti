@@ -26,21 +26,21 @@ const encaseArgs = function(fileName, lineCount, wordCount, characterCount) {
   };
 };
 
+const getFileLog = function(reader, fileName) {
+  let content = readFile(reader, fileName);
+  content = content.trim();
+  return encaseArgs(
+    fileName,
+    getLineCount(content),
+    getWordCount(content),
+    getCharacterCount(content)
+  );
+};
+
 const runCommand = function(fs, params) {
   let content = params.map(readFile.bind(null, fs.readFileSync)).join("");
   content = content.trim();
-  let fileName = params.join("");
-  let lineCount = getLineCount(content);
-  let wordCount = getWordCount(content);
-  let characterCount = getCharacterCount(content);
-  return justifier(
-    {
-    fileName,
-    lineCount,
-    wordCount,
-    characterCount
-    }
-  );
+  return justifier(getFileLog(fs.readFileSync, params.join("")))
 };
 
 module.exports = {
@@ -49,5 +49,5 @@ module.exports = {
   getWordCount,
   readFile,
   runCommand,
-  encaseArgs
+  encaseArgs,
 };
