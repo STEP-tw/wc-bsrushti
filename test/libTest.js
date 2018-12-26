@@ -110,7 +110,7 @@ describe('runCommand', function() {
   it('should return formatted output for single file', function() {
     const params = ['oneLine'];
     const actual = runCommand(fs, params);
-    const expected = '      1     2    7 oneLine';
+    const expected = '       1       2       7 oneLine';
     assert.deepEqual(actual, expected);
   });
 });
