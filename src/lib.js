@@ -15,9 +15,18 @@ const readFile = function(reader, fileName) {
   return reader(fileName, "utf8");
 };
 
+const format = function(lineCount, wordCount, characterCount, fileName) {
+  let result = "      " + lineCount;
+  result += "     " + wordCount;
+  result += "    " + characterCount;
+  result += " " + fileName;
+  return result;
+};
+
 module.exports = {
   getLineCount,
   getCharacterCount,
   getWordCount,
-  readFile
+  readFile,
+  format
 };
