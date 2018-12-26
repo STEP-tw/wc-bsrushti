@@ -7,20 +7,20 @@ const {
 } = require("../src/lib");
 
 describe("getLineCount", function() {
-  it("should return 1 when empty content provided", function() {
+  it("should return 0 when empty content provided", function() {
     const actual = getLineCount("");
-    const expected = 1;
+    const expected = 0;
     assert.deepEqual(actual, expected);
   });
 
-  it("should return 2 when content is split by single \\n", function() {
-    const actual = getLineCount("abc\nefg");
+  it("should return 1 when content is split by single \\n", function() {
+    const actual = getLineCount("abc\nefg\n");
     const expected = 2;
     assert.deepEqual(actual, expected);
   });
 
   it("should return line count as per the given content with multiple \\n", function() {
-    const actual = getLineCount("abc\nefg\nhij\nklm\nnop");
+    const actual = getLineCount("abc\nefg\nhij\nklm\nnop\n");
     const expected = 5;
     assert.deepEqual(actual, expected);
   });
@@ -47,9 +47,9 @@ describe("getCharacterCount", function() {
 });
 
 describe("getWordCount", function() {
-  it("should return 1 when empty content provided", function() {
+  it("should return 0 when empty content provided", function() {
     const actual = getWordCount("");
-    const expected = 1;
+    const expected = 0;
     assert.deepEqual(actual, expected);
   });
 

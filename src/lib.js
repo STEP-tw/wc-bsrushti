@@ -1,5 +1,5 @@
 const getLineCount = function(content) {
-  return content.split("\n").length;
+  return content.split("\n").length - 1;
 };
 
 const getCharacterCount = function(content) {
@@ -7,11 +7,12 @@ const getCharacterCount = function(content) {
 };
 
 const getWordCount = function(content) {
-  return content.split(/ |\n/).length;
+  content = content.split("\n").join(" ");
+  return content.split(" ").filter(x => x).length;
 };
 
-const readFile  = function(reader, fileName) {
-  return reader(fileName);
+const readFile = function(reader, fileName) {
+  return reader(fileName, "utf8");
 };
 
 module.exports = {
