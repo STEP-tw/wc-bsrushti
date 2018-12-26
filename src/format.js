@@ -16,6 +16,12 @@ const spaceCount = function(arg) {
   return 8 - arg.length;
 };
 
+const totalCount = function(fileLog, key) {
+  let count = fileLog.map(x => x[key]);
+  return count.reduce((a, b) => a + b);
+};
+
 module.exports = {
-  justifier
+  justifier,
+  totalCount
 };

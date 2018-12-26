@@ -1,4 +1,4 @@
-const {justifier} = require('../src/format');
+const { justifier, totalCount } = require("../src/format");
 const assert = require("assert");
 
 describe("justifier", function() {
@@ -7,8 +7,48 @@ describe("justifier", function() {
     let lineCount = 1;
     let wordCount = 2;
     let characterCount = 3;
-    const actual = justifier({fileName, lineCount, wordCount,characterCount});
-    const expected = '       1       2       3 file1';
+    const actual = justifier({
+      fileName,
+      lineCount,
+      wordCount,
+      characterCount
+    });
+    const expected = "       1       2       3 file1";
+    assert.deepEqual(actual, expected);
+  });
+});
+
+describe("totalCount", function() {
+  let fileLog = [
+    {
+      fileName: "file1",
+      lineCount: 1,
+      wordCount: 2,
+      characterCount: 1
+    },
+    {
+      fileName: "file2",
+      lineCount: 2,
+      wordCount: 2,
+      characterCount: 4
+    }
+  ];
+
+  it("should return total lineCount of given fileLog", function() {
+    let actual = totalCount(fileLog,'lineCount');
+    let expected = 3;
+    assert.deepEqual(actual, expected);
+  });
+
+  it("should return total wordCount of given fileLog", function() {
+    let actual = totalCount(fileLog,'wordCount');
+    let expected = 4;
+    assert.deepEqual(actual, expected);
+  });
+
+  it("should return total characterCount of given fileLog", function() {
+    let actual = totalCount(fileLog,'characterCount');
+    let expected = 5;
     assert.deepEqual(actual, expected);
   });
 });
