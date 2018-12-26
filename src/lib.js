@@ -3,10 +3,15 @@ const getLineCount = function(content) {
 };
 
 const getCharacterCount = function(content) {
-  return content.length; 
+  return content.length;
+};
+
+const getWordCount = function(content) {
+  return content.split(/ |\n/).length;
 };
 
 module.exports = {
   getLineCount,
-  getCharacterCount
+  getCharacterCount,
+  getWordCount
 };
