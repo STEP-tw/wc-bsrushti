@@ -18,24 +18,15 @@ const readFile = function(reader, fileName) {
   return reader(fileName, "utf8");
 };
 
-const encaseArgs = function(fileName, lineCount, wordCount, characterCount) {
-  return {
-    fileName,
-    lineCount,
-    wordCount,
-    characterCount
-  };
-};
-
 const getFileLog = function(reader, fileName) {
   let content = readFile(reader, fileName);
   content = content.trim();
-  return encaseArgs(
-    fileName,
-    getLineCount(content),
-    getWordCount(content),
-    getCharacterCount(content)
-  );
+  let lineCount = getLineCount(content);
+  let wordCount = getWordCount(content);
+  let characterCount = getCharacterCount(content);
+  return {
+    fileName, lineCount, wordCount, characterCount
+  }
 };
 
 const runCommand = function(fs, params) {
@@ -49,6 +40,5 @@ module.exports = {
   getCharacterCount,
   getWordCount,
   readFile,
-  runCommand,
-  encaseArgs
+  runCommand
 };
