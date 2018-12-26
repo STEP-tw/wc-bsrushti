@@ -17,6 +17,15 @@ const readFile = function(reader, fileName) {
   return reader(fileName, "utf8");
 };
 
+const encaseArgs = function(fileName, lineCount, wordCount, characterCount) {
+  return {
+    fileName,
+    lineCount,
+    wordCount,
+    characterCount
+  };
+};
+
 const runCommand = function(fs, params) {
   let content = params.map(readFile.bind(null, fs.readFileSync)).join("");
   content = content.trim();
@@ -39,5 +48,6 @@ module.exports = {
   getCharacterCount,
   getWordCount,
   readFile,
-  runCommand
+  runCommand,
+  encaseArgs
 };

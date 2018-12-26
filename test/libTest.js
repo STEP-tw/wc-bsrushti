@@ -4,7 +4,8 @@ const {
   getCharacterCount,
   getWordCount,
   readFile,
-  runCommand
+  runCommand,
+  encaseArgs
 } = require("../src/lib");
 
 describe("getLineCount", function() {
@@ -112,5 +113,18 @@ describe('runCommand', function() {
     const actual = runCommand(fs, params);
     const expected = '       1       2       7 oneLine';
     assert.deepEqual(actual, expected);
+  });
+});
+
+describe('encaseArgs', function() {
+  it('should return given params in object', function() {
+    const actual = encaseArgs('file1', 1, 1, 2);
+    const expected = {
+      fileName : 'file1',
+      lineCount : 1,
+      wordCount : 1,
+      characterCount : 2
+    }; 
+    assert.deepEqual(actual,expected);
   });
 });
