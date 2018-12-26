@@ -1,3 +1,5 @@
+const {format} = require('./format');
+
 const getLineCount = function(content) {
   return content.split("\n").length-1;
 };
@@ -13,14 +15,6 @@ const getWordCount = function(content) {
 
 const readFile = function(reader, fileName) {
   return reader(fileName, "utf8");
-};
-
-const format = function(lineCount, wordCount, characterCount, fileName) {
-  let result = "      " + lineCount;
-  result += "     " + wordCount;
-  result += "    " + characterCount;
-  result += " " + fileName;
-  return result;
 };
 
 const runCommand = function(fs, params) {
@@ -39,6 +33,5 @@ module.exports = {
   getCharacterCount,
   getWordCount,
   readFile,
-  format,
   runCommand
 };

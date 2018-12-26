@@ -4,7 +4,6 @@ const {
   getCharacterCount,
   getWordCount,
   readFile,
-  format,
   runCommand
 } = require("../src/lib");
 
@@ -94,14 +93,6 @@ describe('readFile', function() {
     assert.deepEqual(actual, expected);
   });
 
-});
-
-describe('format', function() {
-  it('should return given params in wc format', function() {
-    const actual = format(1, 2, 3, 'file1');
-    const expected = '      1     2    3 file1';
-    assert.deepEqual(actual, expected);
-  });
 });
 
 describe('runCommand', function() {
