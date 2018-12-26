@@ -1,4 +1,4 @@
-const format = function(lineCount, wordCount, characterCount, fileName) {
+const justifier = function(lineCount, wordCount, characterCount, fileName) {
   let result = "";
   let spaces = repeat.bind(null,' ');
   result += spaces(spaceCount(lineCount.toString()))+lineCount;
@@ -17,5 +17,5 @@ const spaceCount = function(arg) {
 };
 
 module.exports = {
-  format
+  justifier
 };
