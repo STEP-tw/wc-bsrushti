@@ -48,5 +48,5 @@ module.exports = {
   getWordCount,
   readFile,
   runCommand,
-  encaseArgs,
+  encaseArgs
 };
