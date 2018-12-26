@@ -38,9 +38,8 @@ const getFileLog = function(reader, fileName) {
 };
 
 const runCommand = function(fs, params) {
-  let content = params.map(readFile.bind(null, fs.readFileSync)).join("");
-  content = content.trim();
-  return justifier(getFileLog(fs.readFileSync, params.join("")))
+  let fileLog = params.map(getFileLog.bind(null, fs.readFileSync));
+  return format(fileLog);
 };
 
 module.exports = {
