@@ -1,9 +1,22 @@
-const justifier = function({ fileName, lineCount, wordCount, characterCount }) {
+const justifier = function({ fileName, lineCount, wordCount, characterCount }, option) {
   let result = "";
   let spaces = repeat.bind(null, " ");
-  result += spaces(spaceCount(lineCount.toString())) + lineCount;
-  result += spaces(spaceCount(wordCount.toString())) + wordCount;
-  result += spaces(spaceCount(characterCount.toString())) + characterCount;
+
+  if(option == '-l') {
+    result += spaces(spaceCount(lineCount.toString())) + lineCount;
+  };
+  if(option == '-w') {
+    result += spaces(spaceCount(wordCount.toString())) + wordCount;
+  };
+  if(option == '-c') {
+    result += spaces(spaceCount(characterCount.toString())) + characterCount;
+  };
+
+  if(option == "") {
+    result += spaces(spaceCount(lineCount.toString())) + lineCount;
+    result += spaces(spaceCount(wordCount.toString())) + wordCount;
+    result += spaces(spaceCount(characterCount.toString())) + characterCount;
+  }
   result += spaces(1) + fileName;
   return result;
 };
@@ -21,17 +34,17 @@ const totalCount = function(fileLog, key) {
   return count.reduce((a, b) => a + b);
 };
 
-const format = function(fileLog) {
+const format = function(fileLog, option) {
   let count = totalCount.bind(null, fileLog);
   let lineCount = count("lineCount");
   let wordCount = count("wordCount");
   let characterCount = count("characterCount");
   let fileName = "total";
   if (fileLog.length == 1) {
-    return fileLog.map(x => justifier(x)).join("");
+    return fileLog.map(x => justifier(x, option)).join("");
   };
-  let result = fileLog.map(x => justifier(x)).join("\n") + "\n";
-  result += justifier({ fileName, lineCount, wordCount, characterCount });
+  let result = fileLog.map(x => justifier(x, option)).join("\n") + "\n";
+  result += justifier({ fileName, lineCount, wordCount, characterCount }, option);
   return result;
 };
 
