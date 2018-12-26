@@ -1,13 +1,9 @@
 const parseInput = function(args) {
-  if (args[0].includes("-")) {
-    return {
-      option: args[0],
-      fileNames: args.slice(1)
-    };
-  }
+  let fileNames = args.filter(x => !x.startsWith("-"));
+  let option = args.filter(x => x.startsWith("-"));
   return {
-    option: "",
-    fileNames: args.slice(0)
+      option,
+      fileNames
   };
 };
 
