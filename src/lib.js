@@ -1,7 +1,7 @@
-const {justifier} = require('./format');
+const { justifier, format } = require("./format");
 
 const getLineCount = function(content) {
-  return content.split("\n").length-1;
+  return content.split("\n").length - 1;
 };
 
 const getCharacterCount = function(content) {
@@ -20,11 +20,17 @@ const readFile = function(reader, fileName) {
 const runCommand = function(fs, params) {
   let content = params.map(readFile.bind(null, fs.readFileSync)).join("");
   content = content.trim();
+  let fileName = params.join("");
+  let lineCount = getLineCount(content);
+  let wordCount = getWordCount(content);
+  let characterCount = getCharacterCount(content);
   return justifier(
-    getLineCount(content),
-    getWordCount(content),
-    getCharacterCount(content),
-    params.join("")
+    {
+    fileName,
+    lineCount,
+    wordCount,
+    characterCount
+    }
   );
 };
 
