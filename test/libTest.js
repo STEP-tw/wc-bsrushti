@@ -1,5 +1,10 @@
 const assert = require("assert");
-const { getLineCount, getCharacterCount, getWordCount } = require("../src/lib");
+const {
+  getLineCount,
+  getCharacterCount,
+  getWordCount,
+  readFile
+} = require("../src/lib");
 
 describe("getLineCount", function() {
   it("should return 1 when empty content provided", function() {
@@ -59,4 +64,32 @@ describe("getWordCount", function() {
     const expected = 10;
     assert.deepEqual(actual, expected);
   });
+});
+
+describe('readFile', function() {
+  const files = {
+    oneLine : 'abc',
+    fiveLines : 'abc\nefg\nhij\nklm\nnop'
+  };
+
+  const fs = {
+    reader : function(fileName) {
+        return files[fileName];
+    }
+  }
+
+  it('should return content for one liner file', function() {
+    const fileName = 'oneLine';
+    const actual = readFile(fs.reader, fileName);
+    const expected = 'abc';
+    assert.deepEqual(actual, expected);
+  });
+
+  it('should return content for five liner file', function() {
+    const fileName = 'fiveLines';
+    const actual = readFile(fs.reader, fileName);
+    const expected = 'abc\nefg\nhij\nklm\nnop';
+    assert.deepEqual(actual, expected);
+  });
+
 });
