@@ -1,5 +1,5 @@
 const getLineCount = function(content) {
-  return content.split("\n").length - 1;
+  return content.split("\n").length-1;
 };
 
 const getCharacterCount = function(content) {
@@ -23,10 +23,22 @@ const format = function(lineCount, wordCount, characterCount, fileName) {
   return result;
 };
 
+const runCommand = function(fs, params) {
+  let content = params.map(readFile.bind(null, fs.readFileSync)).join("");
+  content = content.trim();
+  return format(
+    getLineCount(content),
+    getWordCount(content),
+    getCharacterCount(content),
+    params.join("")
+  );
+};
+
 module.exports = {
   getLineCount,
   getCharacterCount,
   getWordCount,
   readFile,
-  format
+  format,
+  runCommand
 };

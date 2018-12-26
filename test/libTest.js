@@ -4,7 +4,8 @@ const {
   getCharacterCount,
   getWordCount,
   readFile,
-  format
+  format,
+  runCommand
 } = require("../src/lib");
 
 describe("getLineCount", function() {
@@ -99,6 +100,26 @@ describe('format', function() {
   it('should return given params in wc format', function() {
     const actual = format(1, 2, 3, 'file1');
     const expected = '      1     2    3 file1';
+    assert.deepEqual(actual, expected);
+  });
+});
+
+describe('runCommand', function() {
+  const files = {
+    oneLine : 'abc\npqr\n',
+    fiveLines : 'abc\nefg\nhij\nklm\nnop\n'
+  };
+
+  const fs = {
+    readFileSync : function(fileName) {
+        return files[fileName];
+    }
+  }
+
+  it('should return formatted output for single file', function() {
+    const params = ['oneLine'];
+    const actual = runCommand(fs, params);
+    const expected = '      1     2    7 oneLine';
     assert.deepEqual(actual, expected);
   });
 });
