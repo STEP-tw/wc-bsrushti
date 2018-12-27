@@ -4,13 +4,13 @@ const justifier = function({ fileName, lineCount, wordCount, characterCount }, o
   let result = EMPTY_STRING;
   let spaces = repeat.bind(null, SPACE);
   option = option.join(EMPTY_STRING);
-  if(option.includes('l')) {
+  if (option.includes('l')) {
     result += spaces(spaceCount(lineCount.toString())) + lineCount;
   };
-  if(option.includes('w')) {
+  if (option.includes('w')) {
     result += spaces(spaceCount(wordCount.toString())) + wordCount;
   };
-  if(option.includes('c')) {
+  if (option.includes('c')) {
     result += spaces(spaceCount(characterCount.toString())) + characterCount;
   };
 
@@ -21,6 +21,17 @@ const justifier = function({ fileName, lineCount, wordCount, characterCount }, o
   }
   result += spaces(1) + fileName;
   return result;
+};
+
+const reducer = function(a,b) {
+  if(!a.includes(b)) {
+    a.push(b);
+  };
+  return a;
+};
+
+const getUniq = function(options) {
+  return options.reduce(reducer, []);
 };
 
 const repeat = function(character, count) {
