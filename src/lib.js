@@ -1,8 +1,8 @@
 const { format } = require("./format");
 const { parseInput } = require("./parseInput");
-
+const { ENCODING_FORMAT, NEWLINE, SPACE } = require("./constants");
 const getLineCount = function(content) {
-  return content.split("\n").length - 1;
+  return content.split(NEWLINE).length - 1;
 };
 
 const getCharacterCount = function(content) {
@@ -10,12 +10,12 @@ const getCharacterCount = function(content) {
 };
 
 const getWordCount = function(content) {
-  content = content.split("\n").join(" ");
-  return content.split(" ").filter(x => x).length;
+  content = content.split(NEWLINE).join(SPACE);
+  return content.split(SPACE).filter(x => x).length;
 };
 
 const readFile = function(reader, fileName) {
-  return reader(fileName, "utf8");
+  return reader(fileName, ENCODING_FORMAT);
 };
 
 const getFileLog = function(reader, fileName) {
