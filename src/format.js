@@ -45,9 +45,9 @@ const format = function(fileLog, option) {
   if (fileLog.length == 1) {
     return fileLog.map(x => justifier(x, option)).join(EMPTY_STRING);
   };
-  let result = fileLog.map(x => justifier(x, option)).join(NEWLINE) + NEWLINE;
-  result += justifier({ fileName, lineCount, wordCount, characterCount }, option);
-  return result;
+  let formattedOutput = fileLog.map(x => justifier(x, option)).join(NEWLINE) + NEWLINE;
+  formattedOutput += justifier({ fileName, lineCount, wordCount, characterCount }, option);
+  return formattedOutput;
 };
 
 module.exports = {
