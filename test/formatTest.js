@@ -1,4 +1,4 @@
-const { justifier, totalCount, format } = require("../src/format");
+const { justifier, totalCount, formatter } = require("../src/format");
 const assert = require("assert");
 
 describe("justifier", function() {
@@ -114,8 +114,8 @@ describe("totalCount", function() {
   });
 });
 
-describe("format", function() {
-  it("should return formated output for single file", function() {
+describe("formatter", function() {
+  it("should return formatted output for single file", function() {
     const fileLog = [
       {
         fileName: "file1",
@@ -125,12 +125,12 @@ describe("format", function() {
       }
     ];
     let option = [""];
-    let actual = format(fileLog, option);
+    let actual = formatter(fileLog, option);
     let expected = "       1       2       1 file1";
     assert.deepEqual(actual, expected);
   });
 
-  it("should return formated output for more than one file", function() {
+  it("should return formatted output for more than one file", function() {
     const fileLog = [
       {
         fileName: "file1",
@@ -146,7 +146,7 @@ describe("format", function() {
       }
     ];
     let option = [""];
-    let actual = format(fileLog, option);
+    let actual = formatter(fileLog, option);
     let expected = "       1       2       1 file1\n";
     expected += "       2       2       4 file2\n";
     expected += "       3       4       5 total";

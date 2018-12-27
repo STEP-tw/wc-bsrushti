@@ -1,4 +1,4 @@
-const { format } = require("./format");
+const { formatter } = require("./format");
 const { parseInput } = require("./parseInput");
 const { ENCODING_FORMAT, NEWLINE, SPACE } = require("./constants");
 const getLineCount = function(content) {
@@ -35,7 +35,7 @@ const getFileLog = function(reader, fileName) {
 const runCommand = function(fs, params) {
   let { option, fileNames } = parseInput(params);
   let fileLog = fileNames.map(getFileLog.bind(null, fs.readFileSync));
-  return format(fileLog, option);
+  return formatter(fileLog, option);
 };
 
 module.exports = {

@@ -36,7 +36,7 @@ const totalCount = function(fileLog, key) {
   return count.reduce((a, b) => a + b);
 };
 
-const format = function(fileLog, option) {
+const formatter = function(fileLog, option) {
   let count = totalCount.bind(null, fileLog);
   let lineCount = count("lineCount");
   let wordCount = count("wordCount");
@@ -53,5 +53,5 @@ const format = function(fileLog, option) {
 module.exports = {
   justifier,
   totalCount,
-  format
+  formatter
 };
