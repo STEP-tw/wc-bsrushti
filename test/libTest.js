@@ -4,7 +4,7 @@ const {
   getCharacterCount,
   getWordCount,
   readFile,
-  runCommand,
+  runCommand
 } = require("../src/lib");
 
 describe("getLineCount", function() {
@@ -97,7 +97,8 @@ describe("readFile", function() {
 describe("runCommand", function() {
   const files = {
     oneLine: "abc\npqr\n",
-    fiveLines: "abc\nefg\nhij\nklm\nnop\n"
+    fiveLines: "abc\nefg\nhij\nklm\nnop\n",
+    tenLines: "1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n"
   };
 
   const fs = {
@@ -106,10 +107,129 @@ describe("runCommand", function() {
     }
   };
 
-  it("should return formatted output for single file", function() {
-    const params = ["oneLine"];
-    const actual = runCommand(fs, params);
-    const expected = "       1       2       7 oneLine";
-    assert.deepEqual(actual, expected);
+  describe("for default case", function() {
+    it("should return formatted output for single file for default case", function() {
+      const params = ["oneLine"];
+      const actual = runCommand(fs, params);
+      const expected = "       1       2       7 oneLine";
+      assert.deepEqual(actual, expected);
+    });
+
+    it("should return formatted output for multiple file for default case", function() {
+      const params = ["oneLine", "fiveLines", "tenLines"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       1       2       7 oneLine" + "\n";
+      expected += "       4       5      19 fiveLines" + "\n";
+      expected += "       9      10      19 tenLines" + "\n";
+      expected += "      14      17      45 total";
+      assert.deepEqual(actual, expected);
+    });
+  });
+  describe("for single file with single option", function() {
+    it("should return formatted output for single file with option -l", function() {
+      const params = ["-l", "oneLine"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       1 oneLine";
+      assert.deepEqual(actual, expected);
+    });
+
+    it("should return formatted output for single file with option -c", function() {
+      const params = ["-c", "oneLine"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       7 oneLine";
+      assert.deepEqual(actual, expected);
+    });
+
+    it("should return formatted output for single file with option -w", function() {
+      const params = ["-w", "oneLine"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       2 oneLine";
+      assert.deepEqual(actual, expected);
+    });
+  });
+
+  describe("for multiple file with single option", function() {
+    it("should return formatted output for multiple file with option -c", function() {
+      const params = ["-c", "oneLine", "fiveLines", "tenLines"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       7 oneLine" + "\n";
+      expected += "      19 fiveLines" + "\n";
+      expected += "      19 tenLines" + "\n";
+      expected += "      45 total";
+      assert.deepEqual(actual, expected);
+    });
+
+    it("should return formatted output for multiple file with option -l", function() {
+      const params = ["-l", "oneLine", "fiveLines", "tenLines"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       1 oneLine" + "\n";
+      expected += "       4 fiveLines" + "\n";
+      expected += "       9 tenLines" + "\n";
+      expected += "      14 total";
+      assert.deepEqual(actual, expected);
+    });
+
+    it("should return formatted output for multiple file with option -w", function() {
+      const params = ["-w", "oneLine", "fiveLines", "tenLines"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       2 oneLine" + "\n";
+      expected += "       5 fiveLines" + "\n";
+      expected += "      10 tenLines" + "\n";
+      expected += "      17 total";
+      assert.deepEqual(actual, expected);
+    });
+  });
+
+  describe("for multiple file with multiple option", function() {
+    it("should return formatted output for multiple file with option -wl", function() {
+      const params = ["-wl", "oneLine", "fiveLines", "tenLines"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       1       2 oneLine" + "\n";
+      expected += "       4       5 fiveLines" + "\n";
+      expected += "       9      10 tenLines" + "\n";
+      expected += "      14      17 total";
+      assert.deepEqual(actual, expected);
+    });
+
+    it("should return formatted output for multiple file with option -l -c", function() {
+      const params = ["-l", "-c", "oneLine", "fiveLines", "tenLines"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       1       7 oneLine" + "\n";
+      expected += "       4      19 fiveLines" + "\n";
+      expected += "       9      19 tenLines" + "\n";
+      expected += "      14      45 total";
+      assert.deepEqual(actual, expected);
+    });
+
+    it("should return formatted output for multiple file with multiple option -wcl", function() {
+      const params = ["-wcl", "oneLine", "fiveLines", "tenLines"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       1       2       7 oneLine" + "\n";
+      expected += "       4       5      19 fiveLines" + "\n";
+      expected += "       9      10      19 tenLines" + "\n";
+      expected += "      14      17      45 total";
+      assert.deepEqual(actual, expected);
+    });
+
+    it("should return formatted output for multiple file with multiple option -w -c -l", function() {
+      const params = ["-w", "-c", "-l", "oneLine", "fiveLines", "tenLines"];
+      const actual = runCommand(fs, params);
+      let expected = "";
+      expected += "       1       2       7 oneLine" + "\n";
+      expected += "       4       5      19 fiveLines" + "\n";
+      expected += "       9      10      19 tenLines" + "\n";
+      expected += "      14      17      45 total";
+      assert.deepEqual(actual, expected);
+    });
   });
 });
