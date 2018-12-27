@@ -1,7 +1,9 @@
+const { EMPTY_STRING, NEWLINE, SPACE } = require("./constants");
+
 const justifier = function({ fileName, lineCount, wordCount, characterCount }, option) {
-  let result = "";
-  let spaces = repeat.bind(null, " ");
-  option = option.join("");
+  let result = EMPTY_STRING;
+  let spaces = repeat.bind(null, SPACE);
+  option = option.join(EMPTY_STRING);
   if(option.includes('l')) {
     result += spaces(spaceCount(lineCount.toString())) + lineCount;
   };
@@ -22,7 +24,7 @@ const justifier = function({ fileName, lineCount, wordCount, characterCount }, o
 };
 
 const repeat = function(character, count) {
-  return new Array(count).fill(character).join("");
+  return new Array(count).fill(character).join(EMPTY_STRING);
 };
 
 const spaceCount = function(arg) {
@@ -41,9 +43,9 @@ const format = function(fileLog, option) {
   let characterCount = count("characterCount");
   let fileName = "total";
   if (fileLog.length == 1) {
-    return fileLog.map(x => justifier(x, option)).join("");
+    return fileLog.map(x => justifier(x, option)).join(EMPTY_STRING);
   };
-  let result = fileLog.map(x => justifier(x, option)).join("\n") + "\n";
+  let result = fileLog.map(x => justifier(x, option)).join(NEWLINE) + NEWLINE;
   result += justifier({ fileName, lineCount, wordCount, characterCount }, option);
   return result;
 };
