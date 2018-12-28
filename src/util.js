@@ -1,4 +1,4 @@
-const { EMPTY_STRING, NEWLINE, SPACE } = require("./constants");
+const { EMPTY_STRING } = require("./constants");
 
 const reducer = function(a, b) {
   if (!a.includes(b)) {

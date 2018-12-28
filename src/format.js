@@ -1,5 +1,5 @@
 const { EMPTY_STRING, NEWLINE, SPACE } = require("./constants");
-const { removeHyphen, getUniq, repeat } = require("./util");
+const { repeat } = require("./util");
 const justifier = function(
   { fileName, lineCount, wordCount, characterCount },
   option

@@ -1,4 +1,4 @@
-const { removeHyphen, getUniq, repeat } = require("./util");
+const { removeHyphen, getUniq } = require("./util");
 const parseInput = function(args) {
   let fileNames = args.filter(x => !x.startsWith("-"));
   let option = args.filter(x => x.startsWith("-"));
