@@ -5,8 +5,8 @@ const justifier = function(fileLog, option) {
   const { fileName, lineCount, wordCount, characterCount } = fileLog;
   let spaces = repeat.bind(null, SPACE);
   let countObject = { lineCount, wordCount, characterCount };
-  let count = option.map(x => optionCounts(countObject)[x]);
-  let countWithSpaces = count
+  let countList = option.map(x => optionCounts(countObject)[x]);
+  let countWithSpaces = countList
     .map(function(count) {
       return spaces(spaceCount(count.toString())) + count;
     })
