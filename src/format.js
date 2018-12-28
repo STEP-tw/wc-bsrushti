@@ -4,25 +4,15 @@ const justifier = function(
   { fileName, lineCount, wordCount, characterCount },
   option
 ) {
-  let splitOption = option.join("").split("");
-  let uniqOption = removeHyphen(getUniq(splitOption));
-  if (option.length == 0) {
-    uniqOption = sortedOption();
-  }
-  uniqOption = sortedOption().filter(x => uniqOption.includes(x));
   let spaces = repeat.bind(null, SPACE);
   let counts = { lineCount, wordCount, characterCount };
-  let count = uniqOption.map(x => optionCounts(counts)[x]);
+  let count = option.map(x => optionCounts(counts)[x]);
   let result = count
     .map(function(x) {
       return spaces(spaceCount(x.toString())) + x;
     })
     .join(EMPTY_STRING);
   return result + SPACE + fileName;
-};
-
-const sortedOption = function() {
-  return ["l", "w", "c"];
 };
 
 const optionCounts = function(counts) {
