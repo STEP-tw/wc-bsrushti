@@ -3,9 +3,9 @@ const { repeat } = require("./util");
 
 const justifier = function(fileLog, option) {
   const { fileName, lineCount, wordCount, characterCount } = fileLog;
-  let countObject = { lineCount, wordCount, characterCount };
-  let countList = option.map(x => optionCounts(countObject)[x]);
-  let countWithSpaces = countList.map(addSpaces).join(EMPTY_STRING);
+  const countObject = { lineCount, wordCount, characterCount };
+  const countList = option.map(x => optionCounts(countObject)[x]);
+  const countWithSpaces = countList.map(addSpaces).join(EMPTY_STRING);
   return countWithSpaces + SPACE + fileName;
 };
 
