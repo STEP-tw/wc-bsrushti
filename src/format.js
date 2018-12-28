@@ -1,33 +1,47 @@
 const { EMPTY_STRING, NEWLINE, SPACE } = require("./constants");
 
-const justifier = function({ fileName, lineCount, wordCount, characterCount }, option) {
-  let result = EMPTY_STRING;
-  let spaces = repeat.bind(null, SPACE);
-  option = option.join(EMPTY_STRING);
-  if (option.includes('l')) {
-    result += spaces(spaceCount(lineCount.toString())) + lineCount;
-  };
-  if (option.includes('w')) {
-    result += spaces(spaceCount(wordCount.toString())) + wordCount;
-  };
-  if (option.includes('c')) {
-    result += spaces(spaceCount(characterCount.toString())) + characterCount;
-  };
-
-  if(option == "") {
-    result += spaces(spaceCount(lineCount.toString())) + lineCount;
-    result += spaces(spaceCount(wordCount.toString())) + wordCount;
-    result += spaces(spaceCount(characterCount.toString())) + characterCount;
+const justifier = function(
+  { fileName, lineCount, wordCount, characterCount },
+  option
+) {
+  let splitOption = option.join("").split("");
+  let uniqOption = removeHyphen(getUniq(splitOption));
+  if (option.length == 0) {
+    uniqOption = sortedOption();
   }
-  result += spaces(1) + fileName;
-  return result;
+  uniqOption = sortedOption().filter(x => uniqOption.includes(x));
+  let spaces = repeat.bind(null, SPACE);
+  let counts = { lineCount, wordCount, characterCount };
+  count = uniqOption.map(x => optionCounts(counts)[x]);
+  let result = count
+    .map(function(x) {
+      return spaces(spaceCount(x.toString())) + x;
+    })
+    .join(EMPTY_STRING);
+  return result + SPACE + fileName;
 };
 
-const reducer = function(a,b) {
-  if(!a.includes(b)) {
-    a.push(b);
+const sortedOption = function() {
+  return ["l", "w", "c"];
+};
+
+const optionCounts = function(counts) {
+  return {
+    l: counts.lineCount,
+    w: counts.wordCount,
+    c: counts.characterCount
   };
+};
+
+const reducer = function(a, b) {
+  if (!a.includes(b)) {
+    a.push(b);
+  }
   return a;
+};
+
+const removeHyphen = function(option) {
+  return option.slice(1);
 };
 
 const getUniq = function(options) {
@@ -55,9 +69,13 @@ const formatter = function(fileLog, option) {
   let fileName = "total";
   if (fileLog.length == 1) {
     return fileLog.map(x => justifier(x, option)).join(EMPTY_STRING);
-  };
-  let formattedOutput = fileLog.map(x => justifier(x, option)).join(NEWLINE) + NEWLINE;
-  formattedOutput += justifier({ fileName, lineCount, wordCount, characterCount }, option);
+  }
+  let formattedOutput =
+    fileLog.map(x => justifier(x, option)).join(NEWLINE) + NEWLINE;
+  formattedOutput += justifier(
+    { fileName, lineCount, wordCount, characterCount },
+    option
+  );
   return formattedOutput;
 };
 
