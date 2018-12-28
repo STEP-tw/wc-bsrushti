@@ -1,4 +1,6 @@
 const { removeHyphen, getUniq } = require("./util");
+const { EMPTY_STRING } = require("./constants");
+
 const parseInput = function(args) {
   let fileNames = args.filter(x => !x.startsWith("-"));
   let option = args.filter(x => x.startsWith("-"));
@@ -10,7 +12,7 @@ const parseInput = function(args) {
 };
 
 const getUniqOption = function(options) {
-  let splitOption = options.join("").split("");
+  let splitOption = options.join(EMPTY_STRING).split(EMPTY_STRING);
   let uniqOption = removeHyphen(getUniq(splitOption));
   if (options.length == 0) {
     uniqOption = sortedOption();
