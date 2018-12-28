@@ -1,9 +1,7 @@
 const { EMPTY_STRING, NEWLINE, SPACE } = require("./constants");
 const { repeat } = require("./util");
-const justifier = function(
-  { fileName, lineCount, wordCount, characterCount },
-  option
-) {
+const justifier = function(fileLog, option) {
+  const { fileName, lineCount, wordCount, characterCount } = fileLog;
   let spaces = repeat.bind(null, SPACE);
   let counts = { lineCount, wordCount, characterCount };
   let count = option.map(x => optionCounts(counts)[x]);
