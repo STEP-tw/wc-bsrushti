@@ -19,8 +19,13 @@ const repeat = function(character, count) {
   return new Array(count).fill(character).join(EMPTY_STRING);
 };
 
+const isEqualsZero = function(arg) {
+  return arg == 0;
+};
+
 module.exports = {
   removeStartingHyphen,
   getUniq,
-  repeat
+  repeat,
+  isEqualsZero
 };
