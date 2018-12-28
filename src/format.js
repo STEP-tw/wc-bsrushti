@@ -7,8 +7,8 @@ const justifier = function(fileLog, option) {
   let countObject = { lineCount, wordCount, characterCount };
   let count = option.map(x => optionCounts(countObject)[x]);
   let result = count
-    .map(function(x) {
-      return spaces(spaceCount(x.toString())) + x;
+    .map(function(count) {
+      return spaces(spaceCount(count.toString())) + count;
     })
     .join(EMPTY_STRING);
   return result + SPACE + fileName;
