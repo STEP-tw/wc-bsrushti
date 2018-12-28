@@ -1,5 +1,6 @@
 const { EMPTY_STRING, NEWLINE, SPACE } = require("./constants");
 const { repeat } = require("./util");
+
 const justifier = function(fileLog, option) {
   const { fileName, lineCount, wordCount, characterCount } = fileLog;
   let spaces = repeat.bind(null, SPACE);

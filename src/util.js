@@ -7,7 +7,7 @@ const reducer = function(a, b) {
   return a;
 };
 
-const removeHyphen = function(option) {
+const removeStartingHyphen = function(option) {
   return option.slice(1);
 };
 
@@ -20,7 +20,7 @@ const repeat = function(character, count) {
 };
 
 module.exports = {
-  removeHyphen,
+  removeStartingHyphen,
   getUniq,
   repeat
 };
