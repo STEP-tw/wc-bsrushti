@@ -1,5 +1,5 @@
 const { EMPTY_STRING, NEWLINE, SPACE } = require("./constants");
-
+const { removeHyphen, getUniq, repeat } = require("./util");
 const justifier = function(
   { fileName, lineCount, wordCount, characterCount },
   option
@@ -12,7 +12,7 @@ const justifier = function(
   uniqOption = sortedOption().filter(x => uniqOption.includes(x));
   let spaces = repeat.bind(null, SPACE);
   let counts = { lineCount, wordCount, characterCount };
-  count = uniqOption.map(x => optionCounts(counts)[x]);
+  let count = uniqOption.map(x => optionCounts(counts)[x]);
   let result = count
     .map(function(x) {
       return spaces(spaceCount(x.toString())) + x;
@@ -31,25 +31,6 @@ const optionCounts = function(counts) {
     w: counts.wordCount,
     c: counts.characterCount
   };
-};
-
-const reducer = function(a, b) {
-  if (!a.includes(b)) {
-    a.push(b);
-  }
-  return a;
-};
-
-const removeHyphen = function(option) {
-  return option.slice(1);
-};
-
-const getUniq = function(options) {
-  return options.reduce(reducer, []);
-};
-
-const repeat = function(character, count) {
-  return new Array(count).fill(character).join(EMPTY_STRING);
 };
 
 const spaceCount = function(arg) {
