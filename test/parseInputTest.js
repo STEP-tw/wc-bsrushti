@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-const { parseInput } = require("../src/parseInput");
+const { parseInput, getLongOption } = require("../src/parseInput");
 const assert = require("assert");
 
 describe("parseInput", function() {
@@ -36,6 +36,14 @@ describe("parseInput", function() {
       option: ["l", "w", "c"],
       fileNames: ["file1", "file2"]
     };
+    assert.deepEqual(actual, expected);
+  });
+});
+
+describe("getLongOption", function() {
+  it("should return longOption for given abbreviation for l,w,c", function() {
+    let actual = getLongOption("l");
+    let expected = "lineCount";
     assert.deepEqual(actual, expected);
   });
 });

@@ -21,10 +21,19 @@ const getUniqOption = function(options) {
   return uniqOption;
 };
 
+const getLongOption = function(option) {
+  return {
+    l: "lineCount",
+    w: "wordCount",
+    c: "characterCount"
+  }[option];
+};
+
 const sortedOption = function() {
   return ["l", "w", "c"];
 };
 
 module.exports = {
-  parseInput
+  parseInput,
+  getLongOption
 };
