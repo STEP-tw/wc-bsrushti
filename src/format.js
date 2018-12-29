@@ -16,9 +16,9 @@ const addSpaces = function(arg) {
 
 const optionCounts = function(counts) {
   return {
-    l: counts.lineCount,
-    w: counts.wordCount,
-    c: counts.characterCount
+    lineCount: counts.lineCount,
+    wordCount: counts.wordCount,
+    characterCount: counts.characterCount
   };
 };
 

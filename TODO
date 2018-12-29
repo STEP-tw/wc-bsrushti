@@ -1,3 +1,2 @@
-1. Replace all abbreviation of l,w,c option to lineCount, wordCount, characterCount resp.
-2. optionCounts function needs to refactor
-3. Need to refactor justifier and format function
+1. optionCounts function needs to refactor
+2. Need to refactor justifier and format function

@@ -18,6 +18,7 @@ const getUniqOption = function(options) {
     uniqOption = sortedOption();
   }
   uniqOption = sortedOption().filter(x => uniqOption.includes(x));
+  uniqOption = uniqOption.map(getLongOption);
   return uniqOption;
 };
 
