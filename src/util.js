@@ -1,18 +1,11 @@
 const { EMPTY_STRING } = require("./constants");
 
-const reducer = function(a, b) {
-  if (!a.includes(b)) {
-    a.push(b);
-  }
-  return a;
-};
-
 const removeStartingHyphen = function(option) {
   return option.slice(1);
 };
 
 const getUniq = function(options) {
-  return options.reduce(reducer, []);
+  return options.filter(x => !x.includes(options));
 };
 
 const repeat = function(character, count) {
