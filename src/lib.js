@@ -11,8 +11,7 @@ const getCharacterCount = function(content) {
 };
 
 const getWordCount = function(content) {
-  content = content.split(NEWLINE).join(SPACE);
-  return content.split(SPACE).filter(x => x).length;
+  return content.split(/ |\n/).filter(x => x).length;
 };
 
 const readFile = function(reader, fileName) {

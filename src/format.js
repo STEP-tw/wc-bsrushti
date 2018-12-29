@@ -11,7 +11,7 @@ const justifier = function(fileLog, option) {
 
 const addSpaces = function(arg) {
   const spaces = repeat.bind(null, SPACE);
-  return spaces(spaceCount(arg.toString())) + arg;
+  return [spaces(spaceCount(arg.toString())), arg].join(EMPTY_STRING);
 };
 
 const optionCounts = function(counts) {
