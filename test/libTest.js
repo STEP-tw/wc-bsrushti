@@ -112,7 +112,7 @@ describe("runCommand", function() {
     it("should return formatted output for single file for default case", function() {
       const params = ["oneLine"];
       const actual = runCommand(fs, params);
-      const expected = "       1       2       7 oneLine";
+      const expected = "       2       2       8 oneLine";
       assert.deepEqual(actual, expected);
     });
 
@@ -120,10 +120,10 @@ describe("runCommand", function() {
       const params = ["oneLine", "fiveLines", "tenLines"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       1       2       7 oneLine" + "\n";
-      expected += "       4       5      19 fiveLines" + "\n";
-      expected += "       9      10      19 tenLines" + "\n";
-      expected += "      14      17      45 total";
+      expected += "       2       2       8 oneLine" + "\n";
+      expected += "       5       5      20 fiveLines" + "\n";
+      expected += "      10      10      20 tenLines" + "\n";
+      expected += "      17      17      48 total";
       assert.deepEqual(actual, expected);
     });
   });
@@ -132,7 +132,7 @@ describe("runCommand", function() {
       const params = ["-l", "oneLine"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       1 oneLine";
+      expected += "       2 oneLine";
       assert.deepEqual(actual, expected);
     });
 
@@ -140,7 +140,7 @@ describe("runCommand", function() {
       const params = ["-c", "oneLine"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       7 oneLine";
+      expected += "       8 oneLine";
       assert.deepEqual(actual, expected);
     });
 
@@ -158,10 +158,10 @@ describe("runCommand", function() {
       const params = ["-c", "oneLine", "fiveLines", "tenLines"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       7 oneLine" + "\n";
-      expected += "      19 fiveLines" + "\n";
-      expected += "      19 tenLines" + "\n";
-      expected += "      45 total";
+      expected += "       8 oneLine" + "\n";
+      expected += "      20 fiveLines" + "\n";
+      expected += "      20 tenLines" + "\n";
+      expected += "      48 total";
       assert.deepEqual(actual, expected);
     });
 
@@ -169,10 +169,10 @@ describe("runCommand", function() {
       const params = ["-l", "oneLine", "fiveLines", "tenLines"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       1 oneLine" + "\n";
-      expected += "       4 fiveLines" + "\n";
-      expected += "       9 tenLines" + "\n";
-      expected += "      14 total";
+      expected += "       2 oneLine" + "\n";
+      expected += "       5 fiveLines" + "\n";
+      expected += "      10 tenLines" + "\n";
+      expected += "      17 total";
       assert.deepEqual(actual, expected);
     });
 
@@ -193,10 +193,10 @@ describe("runCommand", function() {
       const params = ["-wl", "oneLine", "fiveLines", "tenLines"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       1       2 oneLine" + "\n";
-      expected += "       4       5 fiveLines" + "\n";
-      expected += "       9      10 tenLines" + "\n";
-      expected += "      14      17 total";
+      expected += "       2       2 oneLine" + "\n";
+      expected += "       5       5 fiveLines" + "\n";
+      expected += "      10      10 tenLines" + "\n";
+      expected += "      17      17 total";
       assert.deepEqual(actual, expected);
     });
 
@@ -204,10 +204,10 @@ describe("runCommand", function() {
       const params = ["-l", "-c", "oneLine", "fiveLines", "tenLines"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       1       7 oneLine" + "\n";
-      expected += "       4      19 fiveLines" + "\n";
-      expected += "       9      19 tenLines" + "\n";
-      expected += "      14      45 total";
+      expected += "       2       8 oneLine" + "\n";
+      expected += "       5      20 fiveLines" + "\n";
+      expected += "      10      20 tenLines" + "\n";
+      expected += "      17      48 total";
       assert.deepEqual(actual, expected);
     });
 
@@ -215,10 +215,10 @@ describe("runCommand", function() {
       const params = ["-wcl", "oneLine", "fiveLines", "tenLines"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       1       2       7 oneLine" + "\n";
-      expected += "       4       5      19 fiveLines" + "\n";
-      expected += "       9      10      19 tenLines" + "\n";
-      expected += "      14      17      45 total";
+      expected += "       2       2       8 oneLine" + "\n";
+      expected += "       5       5      20 fiveLines" + "\n";
+      expected += "      10      10      20 tenLines" + "\n";
+      expected += "      17      17      48 total";
       assert.deepEqual(actual, expected);
     });
 
@@ -226,10 +226,10 @@ describe("runCommand", function() {
       const params = ["-w", "-c", "-l", "oneLine", "fiveLines", "tenLines"];
       const actual = runCommand(fs, params);
       let expected = "";
-      expected += "       1       2       7 oneLine" + "\n";
-      expected += "       4       5      19 fiveLines" + "\n";
-      expected += "       9      10      19 tenLines" + "\n";
-      expected += "      14      17      45 total";
+      expected += "       2       2       8 oneLine" + "\n";
+      expected += "       5       5      20 fiveLines" + "\n";
+      expected += "      10      10      20 tenLines" + "\n";
+      expected += "      17      17      48 total";
       assert.deepEqual(actual, expected);
     });
   });

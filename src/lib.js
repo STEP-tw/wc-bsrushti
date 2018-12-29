@@ -1,6 +1,7 @@
 const { formatter } = require("./format");
 const { parseInput } = require("./parseInput");
 const { ENCODING_FORMAT, NEWLINE, SPACE } = require("./constants");
+
 const getLineCount = function(content) {
   return content.split(NEWLINE).length - 1;
 };
@@ -20,7 +21,6 @@ const readFile = function(reader, fileName) {
 
 const getFileLog = function(reader, fileName) {
   let content = readFile(reader, fileName);
-  content = content.trim();
   let lineCount = getLineCount(content);
   let wordCount = getWordCount(content);
   let characterCount = getCharacterCount(content);
