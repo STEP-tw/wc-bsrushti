@@ -1,4 +1,4 @@
-const { removeStartingHyphen, getUniq, isEqualsZero } = require("./util");
+const { isEqualsZero } = require("./util");
 const { EMPTY_STRING, HYPHEN } = require("./constants");
 
 const parseInput = function(args) {
@@ -12,8 +12,7 @@ const parseInput = function(args) {
 };
 
 const getUniqOption = function(options) {
-  let splitOption = options.join(EMPTY_STRING).split(EMPTY_STRING);
-  let uniqOption = removeStartingHyphen(getUniq(splitOption));
+  let uniqOption = options.join(EMPTY_STRING).split(EMPTY_STRING);
   if (isEqualsZero(options.length)) {
     uniqOption = sortedOption();
   }
