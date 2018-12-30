@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-const { justifier, totalCount, formatter } = require("../src/format");
+const { justifier, formatter } = require("../src/format");
 const assert = require("assert");
 
 describe("justifier", function() {

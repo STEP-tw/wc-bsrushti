@@ -1,2 +1,3 @@
-1. optionCounts function needs to refactor
-2. Need to refactor justifier and format function
+1. Need to refactor formatter function
+  * fileName = "total"
+  the above line is confusing

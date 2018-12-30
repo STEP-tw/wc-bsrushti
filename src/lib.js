@@ -1,6 +1,6 @@
 const { formatter } = require("./format");
 const { parseInput } = require("./parseInput");
-const { ENCODING_FORMAT, NEWLINE, SPACE } = require("./constants");
+const { ENCODING_FORMAT, NEWLINE } = require("./constants");
 
 const getLineCount = function(content) {
   return content.split(NEWLINE).length - 1;
