@@ -8,16 +8,11 @@ describe("justifier", function() {
     let lineCount = 1;
     let wordCount = 2;
     let characterCount = 3;
-    let option = ["lineCount", "wordCount", "characterCount"];
-    const actual = justifier(
-      {
-        fileName,
-        lineCount,
-        wordCount,
-        characterCount
-      },
-      option
-    );
+    let optionCount = [lineCount, wordCount, characterCount];
+    const actual = justifier({
+      fileName,
+      optionCount
+    });
     const expected = "       1       2       3 file1";
     assert.deepEqual(actual, expected);
   });
@@ -25,56 +20,35 @@ describe("justifier", function() {
   it("should return given params in wc format when option is -l", function() {
     let fileName = "file1";
     let lineCount = 1;
-    let wordCount = 2;
-    let characterCount = 3;
-    let option = ["lineCount"];
-    const actual = justifier(
-      {
-        fileName,
-        lineCount,
-        wordCount,
-        characterCount
-      },
-      option
-    );
+    let optionCount = [lineCount];
+    const actual = justifier({
+      fileName,
+      optionCount
+    });
     const expected = "       1 file1";
     assert.deepEqual(actual, expected);
   });
 
   it("should return given params in wc format when option is -w", function() {
     let fileName = "file1";
-    let lineCount = 1;
     let wordCount = 2;
-    let characterCount = 3;
-    let option = ["wordCount"];
-    const actual = justifier(
-      {
-        fileName,
-        lineCount,
-        wordCount,
-        characterCount
-      },
-      option
-    );
+    let optionCount = [wordCount];
+    const actual = justifier({
+      fileName,
+      optionCount
+    });
     const expected = "       2 file1";
     assert.deepEqual(actual, expected);
   });
 
   it("should return given params in wc format when option is -c", function() {
     let fileName = "file1";
-    let lineCount = 1;
-    let wordCount = 2;
     let characterCount = 3;
-    let option = ["characterCount"];
-    const actual = justifier(
-      {
-        fileName,
-        lineCount,
-        wordCount,
-        characterCount
-      },
-      option
-    );
+    let optionCount = [characterCount];
+    const actual = justifier({
+      fileName,
+      optionCount
+    });
     const expected = "       3 file1";
     assert.deepEqual(actual, expected);
   });
@@ -120,13 +94,10 @@ describe("formatter", function() {
     const fileLog = [
       {
         fileName: "file1",
-        lineCount: 1,
-        wordCount: 2,
-        characterCount: 1
+        optionCount: [1, 2, 1]
       }
     ];
-    let option = ["lineCount", "wordCount", "characterCount"];
-    let actual = formatter(fileLog, option);
+    let actual = formatter(fileLog);
     let expected = "       1       2       1 file1";
     assert.deepEqual(actual, expected);
   });
@@ -135,19 +106,14 @@ describe("formatter", function() {
     const fileLog = [
       {
         fileName: "file1",
-        lineCount: 1,
-        wordCount: 2,
-        characterCount: 1
+        optionCount: [1, 2, 1]
       },
       {
         fileName: "file2",
-        lineCount: 2,
-        wordCount: 2,
-        characterCount: 4
+        optionCount: [2, 2, 4]
       }
     ];
-    let option = ["lineCount", "wordCount", "characterCount"];
-    let actual = formatter(fileLog, option);
+    let actual = formatter(fileLog);
     let expected = "       1       2       1 file1\n";
     expected += "       2       2       4 file2\n";
     expected += "       3       4       5 total";

@@ -18,23 +18,27 @@ const readFile = function(reader, fileName) {
   return reader(fileName, ENCODING_FORMAT);
 };
 
-const getFileLog = function(reader, fileName) {
+const getCounts = function(content, option) {
+  return {
+    lineCount: getLineCount(content),
+    wordCount: getWordCount(content),
+    characterCount: getCharacterCount(content)
+  }[option];
+};
+
+const getFileLog = function(reader, option, fileName) {
   let content = readFile(reader, fileName);
-  let lineCount = getLineCount(content);
-  let wordCount = getWordCount(content);
-  let characterCount = getCharacterCount(content);
+  let optionCount = option.map(getCounts.bind(null, content));
   return {
     fileName,
-    lineCount,
-    wordCount,
-    characterCount
+    optionCount
   };
 };
 
 const runCommand = function(fs, params) {
   let { option, fileNames } = parseInput(params);
-  let fileLog = fileNames.map(getFileLog.bind(null, fs.readFileSync));
-  return formatter(fileLog, option);
+  let fileLog = fileNames.map(getFileLog.bind(null, fs.readFileSync, option));
+  return formatter(fileLog);
 };
 
 module.exports = {
