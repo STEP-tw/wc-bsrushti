@@ -54,41 +54,6 @@ describe("justifier", function() {
   });
 });
 
-describe("totalCount", function() {
-  const fileLog = [
-    {
-      fileName: "file1",
-      lineCount: 1,
-      wordCount: 2,
-      characterCount: 1
-    },
-    {
-      fileName: "file2",
-      lineCount: 2,
-      wordCount: 2,
-      characterCount: 4
-    }
-  ];
-
-  it("should return total lineCount of given fileLog", function() {
-    let actual = totalCount(fileLog, "lineCount");
-    let expected = 3;
-    assert.deepEqual(actual, expected);
-  });
-
-  it("should return total wordCount of given fileLog", function() {
-    let actual = totalCount(fileLog, "wordCount");
-    let expected = 4;
-    assert.deepEqual(actual, expected);
-  });
-
-  it("should return total characterCount of given fileLog", function() {
-    let actual = totalCount(fileLog, "characterCount");
-    let expected = 5;
-    assert.deepEqual(actual, expected);
-  });
-});
-
 describe("formatter", function() {
   it("should return formatted output for single file", function() {
     const fileLog = [

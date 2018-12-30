@@ -16,11 +16,6 @@ const spaceCount = function(arg) {
   return 8 - arg.length;
 };
 
-const totalCount = function(fileLog, key) {
-  let count = fileLog.map(x => x[key]);
-  return count.reduce((a, b) => a + b);
-};
-
 const formatter = function(fileLog) {
   let optionCount = fileLog.map(x => x.optionCount);
   optionCount = optionCount.reduce(addTwoList);
@@ -35,6 +30,5 @@ const formatter = function(fileLog) {
 
 module.exports = {
   justifier,
-  totalCount,
   formatter
 };
