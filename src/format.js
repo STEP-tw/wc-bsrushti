@@ -17,14 +17,13 @@ const spaceCount = function(arg) {
 };
 
 const formatter = function(fileLog) {
-  let optionCount = fileLog.map(x => x.optionCount);
-  optionCount = optionCount.reduce(addTwoList);
-  let fileName = "total";
+  let totalCount = fileLog.map(x => x.optionCount);
+  totalCount = totalCount.reduce(addTwoList);
   if (fileLog.length == 1) {
     return fileLog.map(x => justifier(x)).join(EMPTY_STRING);
   }
-  let formattedOutput = fileLog.map(x => justifier(x)).join(NEWLINE) + NEWLINE;
-  formattedOutput += justifier({ fileName, optionCount });
+  fileLog.push({ fileName: "total", optionCount: totalCount });
+  let formattedOutput = fileLog.map(x => justifier(x)).join(NEWLINE);
   return formattedOutput;
 };
 
