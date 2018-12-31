@@ -233,4 +233,13 @@ describe("runCommand", function() {
       assert.deepEqual(actual, expected);
     });
   });
+
+  describe("testing for illegal option", function() {
+    it("should return illegal option message", function() {
+      const params = ["-v", "-w", "oneLine"];
+      const actual = runCommand(fs, params);
+      const expected = "wc: illegal option -- v\nusage: wc [-clmw] [file ...]";
+      assert.deepEqual(actual, expected);
+    });
+  });
 });

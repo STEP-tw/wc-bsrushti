@@ -7,7 +7,8 @@ describe("parseInput", function() {
     let actual = parseInput(["-l", "file"]);
     let expected = {
       option: ["lineCount"],
-      fileNames: ["file"]
+      fileNames: ["file"],
+      illegalOption: []
     };
     assert.deepEqual(actual, expected);
   });
@@ -16,7 +17,8 @@ describe("parseInput", function() {
     let actual = parseInput(["-l", "file1", "file2"]);
     let expected = {
       option: ["lineCount"],
-      fileNames: ["file1", "file2"]
+      fileNames: ["file1", "file2"],
+      illegalOption: []
     };
     assert.deepEqual(actual, expected);
   });
@@ -25,7 +27,8 @@ describe("parseInput", function() {
     let actual = parseInput(["-l", "-c", "file1"]);
     let expected = {
       option: ["lineCount", "characterCount"],
-      fileNames: ["file1"]
+      fileNames: ["file1"],
+      illegalOption: []
     };
     assert.deepEqual(actual, expected);
   });
@@ -34,7 +37,8 @@ describe("parseInput", function() {
     let actual = parseInput(["-l", "-c", "-w", "file1", "file2"]);
     let expected = {
       option: ["lineCount", "wordCount", "characterCount"],
-      fileNames: ["file1", "file2"]
+      fileNames: ["file1", "file2"],
+      illegalOption: []
     };
     assert.deepEqual(actual, expected);
   });

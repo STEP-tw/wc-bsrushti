@@ -36,7 +36,10 @@ const getFileLog = function(reader, option, fileName) {
 };
 
 const runCommand = function(fs, params) {
-  let { option, fileNames } = parseInput(params);
+  let { option, fileNames, illegalOption } = parseInput(params);
+  if (illegalOption.length) {
+    return illegalOption.join(NEWLINE);
+  }
   let fileLog = fileNames.map(getFileLog.bind(null, fs.readFileSync, option));
   return formatter(fileLog);
 };
